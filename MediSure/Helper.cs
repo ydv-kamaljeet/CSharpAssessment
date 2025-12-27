@@ -4,7 +4,7 @@ namespace MediSure
 {
     public class Helper
     {
-        
+        static PatientBill LastBill;
         /// <summary>
         /// Member function to Print the Menu.
         /// </summary>
@@ -19,7 +19,7 @@ namespace MediSure
         /// Member function to Register the details of Patient and create a bill
         /// </summary>
         /// <returns></returns>
-        public PatientBill RegisterPatient()
+        public void RegisterPatient()
         {
             
             Console.WriteLine("Enter BillId : ");
@@ -29,7 +29,7 @@ namespace MediSure
             if(id == null || id == "")
             {
                 Console.WriteLine("Enter valid Bill Id.");
-                
+                return;
             }
 
             Console.WriteLine("Enter Patient Name : ");
@@ -55,12 +55,12 @@ namespace MediSure
             if(consultationFee <= 0)
             {
                 Console.WriteLine("Enter Valid consultation Fee.");
-                
+                return;
             }
             if(labCharges+medCharges < 0)
             {
                 Console.WriteLine("Enter Valid Lab and Medicine Charges.");
-                
+                return;
             }
 
             //Calculating gross charges
@@ -69,31 +69,37 @@ namespace MediSure
             if(hasInsurance) discountAmount = grossAmount*0.10;
             double finalAmount=grossAmount-discountAmount;
             
-            PatientBill pb = new PatientBill(){BillId=id,PatientName=name,HasInsurance=hasInsurance,ConsultingFee=consultationFee,LabCharges=labCharges,MedicineCharges=medCharges,GrossAmount=grossAmount,DiscountAmount=discountAmount,FinalPayable=finalAmount};
+            LastBill = new PatientBill(){BillId=id,PatientName=name,HasInsurance=hasInsurance,ConsultingFee=consultationFee,LabCharges=labCharges,MedicineCharges=medCharges,GrossAmount=grossAmount,DiscountAmount=discountAmount,FinalPayable=finalAmount};
             
-           return pb;
         }
 
         /// <summary>
         /// Member function to Print the Bil
         /// </summary>
         /// <param name="pb"></param>
-        public void ViewLastBill(PatientBill pb)
+        public void ViewLastBill()
         {
-            if (pb == null)
+            try{
+            if (LastBill == null)
             {
                 Console.WriteLine("Bill is not created successfully, so create the Bill first by giving valid input");
+            }else{
+            Console.WriteLine($"Bill Id : {LastBill.BillId}\nPatient Name : {LastBill.PatientName}");
+            Console.WriteLine($"Insured : {LastBill.HasInsurance}\nConsultation Fees : {LastBill.ConsultingFee}");
+            Console.WriteLine($"Lab Charges : {LastBill.LabCharges}\nMedicine Charges : {LastBill.MedicineCharges}");
+            Console.WriteLine($"Gross Amount : {LastBill.GrossAmount}\nDiscount : {LastBill.DiscountAmount}\nFinal Payable Amount : {LastBill.FinalPayable}");
             }
-            Console.WriteLine($"Bill Id : {pb.BillId}\nPatient Name : {pb.PatientName}");
-            Console.WriteLine($"Insured : {pb.HasInsurance}\nConsultation Fees : {pb.ConsultingFee}");
-            Console.WriteLine($"Lab Charges : {pb.LabCharges}\nMedicine Charges : {pb.MedicineCharges}");
-            Console.WriteLine($"Gross Amount : {pb.GrossAmount}\nDiscount : {pb.DiscountAmount}\nFinal Payable Amount : {pb.FinalPayable}");
+            }
+            catch (NullReferenceException)
+            {
+                Console.WriteLine("You are not giving valid input thats why last bill was not created.");
+            }
         }
 
         //Member function to clear the Old Bill
-        public void ClearLastBill(PatientBill pb)
+        public void ClearLastBill()
         {
-            pb=null;
+            LastBill=null;
             Console.WriteLine("Bill Cleared");
 
         }
