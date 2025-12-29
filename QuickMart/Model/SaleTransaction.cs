@@ -1,5 +1,8 @@
 namespace QuickMart
 {
+    /// <summary>
+    /// Base Class having info related to Sale Transaction
+    /// </summary>
     public  class SaleTransaction
     {
         // Attributes declaration
@@ -11,6 +14,7 @@ namespace QuickMart
         public float sellPrice{get; set;}
 
         // Constructor Declaration
+        #region Constructor
         public SaleTransaction(string invoice, string customer, string item, int quantity, float purchase, float selling)
         {
             invoiceId = invoice;
@@ -20,7 +24,7 @@ namespace QuickMart
             buyPrice = purchase;
             sellPrice = selling;
         }
-
+        #endregion
 
     }
 }

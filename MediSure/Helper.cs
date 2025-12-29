@@ -8,17 +8,20 @@ namespace MediSure
         /// <summary>
         /// Member function to Print the Menu.
         /// </summary>
+        #region Print Menu
         public void PrintMenu()
         {
             Console.WriteLine("Select any one option :");
             Console.WriteLine("1. Create New Bill\n2. View Last Bill\n3. Clear Last Bill\n4. Exit");
             Console.WriteLine("");//To Make the menu look clean
         }
-
+        #endregion
+        
         /// <summary>
         /// Member function to Register the details of Patient and create a bill
         /// </summary>
         /// <returns></returns>
+        #region  Bill Creation/ Patient Registeration
         public void RegisterPatient()
         {
             
@@ -26,7 +29,7 @@ namespace MediSure
             string? id = Console.ReadLine();
 
             //id validation
-            if(id == null || id == "")
+            if(string.IsNullOrEmpty(id))
             {
                 Console.WriteLine("Enter valid Bill Id.");
                 return;
@@ -71,38 +74,44 @@ namespace MediSure
             
             LastBill = new PatientBill(){BillId=id,PatientName=name,HasInsurance=hasInsurance,ConsultingFee=consultationFee,LabCharges=labCharges,MedicineCharges=medCharges,GrossAmount=grossAmount,DiscountAmount=discountAmount,FinalPayable=finalAmount};
             
+            Console.WriteLine("Bill Created Successfully.");
         }
+        #endregion
 
         /// <summary>
         /// Member function to Print the Bil
         /// </summary>
         /// <param name="pb"></param>
+        #region View Last Bill
         public void ViewLastBill()
         {
             try{
-            if (LastBill == null)
-            {
-                Console.WriteLine("Bill is not created successfully, so create the Bill first by giving valid input");
-            }else{
-            Console.WriteLine($"Bill Id : {LastBill.BillId}\nPatient Name : {LastBill.PatientName}");
-            Console.WriteLine($"Insured : {LastBill.HasInsurance}\nConsultation Fees : {LastBill.ConsultingFee}");
-            Console.WriteLine($"Lab Charges : {LastBill.LabCharges}\nMedicine Charges : {LastBill.MedicineCharges}");
-            Console.WriteLine($"Gross Amount : {LastBill.GrossAmount}\nDiscount : {LastBill.DiscountAmount}\nFinal Payable Amount : {LastBill.FinalPayable}");
+                if (LastBill == null)   //In case we have cleared the bill
+                {
+                    Console.WriteLine("Bill is not created successfully, so create the Bill first by giving valid input");
+                }else{
+                Console.WriteLine($"Bill Id : {LastBill.BillId}\nPatient Name : {LastBill.PatientName}");
+                Console.WriteLine($"Insured : {LastBill.HasInsurance}\nConsultation Fees : {LastBill.ConsultingFee}");
+                Console.WriteLine($"Lab Charges : {LastBill.LabCharges}\nMedicine Charges : {LastBill.MedicineCharges}");
+                Console.WriteLine($"Gross Amount : {LastBill.GrossAmount}\nDiscount : {LastBill.DiscountAmount}\nFinal Payable Amount : {LastBill.FinalPayable}");
+                }
             }
-            }
-            catch (NullReferenceException)
+            catch (NullReferenceException)  //after clearing bill , LastBill is pointing to null, to handle that null reference exception
             {
                 Console.WriteLine("You are not giving valid input thats why last bill was not created.");
             }
         }
-
+        #endregion
+        
         //Member function to clear the Old Bill
+        #region  Clear Previous Bill
         public void ClearLastBill()
         {
             LastBill=null;
-            Console.WriteLine("Bill Cleared");
+            Console.WriteLine("Bill Cleared.");
 
         }
+        #endregion
 
     }
 }

@@ -5,11 +5,14 @@ using System.Xml.Serialization;
 
 namespace MediSure
 {
+    /// <summary>
+    /// Program Class : Entry Point of this project
+    /// Need to make a Menu system to have some options like generate and clear bill , view last bill ,exit
+    /// </summary>
     public class Program
     {
         //static object for Storing Old Bill and flag value of HasOldBill
          static bool HasOldBill=false;
-         
         /// <summary>
         /// Main function of this project
         /// </summary>
@@ -18,6 +21,8 @@ namespace MediSure
         {
            
             Helper helper= new Helper();
+            
+            #region User Input and related Action
             int choice=0;
             //Will take input from user until user enter "4" as input.    
             while (choice != 4)
@@ -50,6 +55,8 @@ namespace MediSure
                 }
 
             }
+            #endregion
+        
         }
     }
 }

@@ -1,10 +1,19 @@
 namespace QuickMart
 {
-    class DataBank
+    /// <summary>
+    /// Helper class contains all the neccessary methods 
+    /// like take user input , add trasaction , View last transaction ,Calculate Profit/loss on transaction
+    /// At last exit from console.
+    /// </summary>
+    public class Helper
     {
-        private static SaleTransaction lastSale;
+        private static SaleTransaction lastSale;    //stores the object of previous/last sale
 
-        public void MakeSale() // Sale is void function which will print the results
+        /// <summary>
+        /// Member function to take input from user and envoke the required method.
+        /// </summary> 
+        #region User Input
+        public void MakeSale() // MakeSale is void function which will print the results
         {
             int choice;
             
@@ -47,8 +56,10 @@ namespace QuickMart
                 }
             } while (choice != 4);
         }
+        #endregion
 
         // Function to Create new Transaction
+        #region Add Transaction
         private static void addTransaction()
         {
             // Taking the Inputs 
@@ -71,6 +82,7 @@ namespace QuickMart
                 return;
             }
 
+            //Parsing the input from string to float value
             if (!int.TryParse(quantity, out int qty) || 
                 !float.TryParse(buyAmt, out float purchasePrice) || 
                 !float.TryParse(sellAmt, out float sellingPrice))
@@ -84,12 +96,13 @@ namespace QuickMart
                 Console.WriteLine("Quantity must be greater than 0");
                 return;
             }
-
+            //validating Purchase Price
             if(purchasePrice <=0)
             {
                 Console.WriteLine("Purchase Amount must be greater than 0");
                 return;
             }
+            //validating Selling Price
             if(sellingPrice <0)
             {
                 Console.WriteLine("SellingPrice  must be greater than equal to 0");
@@ -97,11 +110,13 @@ namespace QuickMart
             }
            
 
-            lastSale = new SaleTransaction(invoiceNo, custName, product, qty, purchasePrice, sellingPrice);
+            lastSale = new SaleTransaction(invoiceNo, custName, product, qty, purchasePrice, sellingPrice); //Save the last Sale.
             Console.WriteLine("Transaction created successfully!");
         }
+        #endregion
 
         // Function for viewing the LastTransaction
+        #region View Transaction
         private static void viewTransaction()
         {
             if (lastSale == null)
@@ -118,7 +133,10 @@ namespace QuickMart
             Console.WriteLine("Selling Amount: " + lastSale.sellPrice);
             Console.WriteLine();    //Extra Line Space to make it looks clean
         }
+        #endregion
+        
         // Function for Calcualting 
+        #region Calculate Profit
         private static void calcProfit()
         {
             if (lastSale == null)
@@ -148,5 +166,6 @@ namespace QuickMart
             Console.WriteLine("ProfitMarginPercent = " + margin);
             Console.WriteLine("ProfitOrLossStatus = " + status);
         }
+        #endregion
     }
 }

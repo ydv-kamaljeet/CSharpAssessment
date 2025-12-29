@@ -3,6 +3,7 @@ namespace MediSure
     /// <summary>
     /// Class containing properties related to Patient Bill
     /// </summary>
+    #region Class Declaration
     public class PatientBill
     {
         public string? BillId{get;set;}
@@ -11,10 +12,11 @@ namespace MediSure
         public double ConsultingFee{get;set;}
         public double LabCharges{get;set;}
         public double MedicineCharges{get;set;}
-
         public double GrossAmount;
         public double DiscountAmount;
         public double FinalPayable;
         
     }
+    #endregion
+
 }
