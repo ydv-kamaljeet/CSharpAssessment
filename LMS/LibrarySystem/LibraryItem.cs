@@ -1,5 +1,8 @@
 namespace LibrarySystem.Items
 {
+/// <summary>
+/// Base class : contains the properties of Library items
+/// </summary>
     public abstract class LibraryItem
     {
         public string? Title { get; set; }

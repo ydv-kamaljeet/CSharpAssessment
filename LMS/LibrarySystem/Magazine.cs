@@ -1,5 +1,9 @@
 namespace LibrarySystem.Items
 {
+    /// <summary>
+    /// Its also a Library Item : Magazine
+    /// child class of LibraryItem
+    /// </summary>
     public class Magazine : LibraryItem
     {
         public override void DisplayItemDetails()

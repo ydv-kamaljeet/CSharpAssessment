@@ -4,7 +4,7 @@ namespace LibrarySystem
     {
         public static void DisplayAnalytics()
         {
-            Console.WriteLine("Total Items Borrowed: " + TotalBorrowedItems);
+            Console.WriteLine("Total Items Borrowed: " + TotalBorrowedItems);   //Calling the static member from its partial class
         }
     }
 }

@@ -1,8 +1,11 @@
 namespace LibrarySystem.Items
 {
+    /// <summary>
+    /// Its also Library item : Ebook
+    /// </summary>
     public class eBook : LibraryItem
     {
-        public override void DisplayItemDetails()
+        public override void DisplayItemDetails()   //for getting details
         {
             Console.WriteLine("Item Type: eBook");
             Console.WriteLine("Title: " + Title);
@@ -15,7 +18,7 @@ namespace LibrarySystem.Items
             return 0;
         }
 
-        public void Download()
+        public void Download()  //Adding the extra behaviour of Ebook
         {
             Console.WriteLine("eBook downloaded successfully.");
         }
