@@ -25,5 +25,12 @@ namespace LibrarySystem.Items
         {
             Console.WriteLine("Notification sent: " + message);
         }
+        void INotifiable.SendNotification(UserRole role)
+        {
+            if (role == UserRole.Admin)
+                Console.WriteLine("Admin Alert: System Update is Available and Maintenance required.");
+            else
+                Console.WriteLine("Member Notification: Your borrowed item need to be submit by tommorow.");
+        }
     }
 }

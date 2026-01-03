@@ -8,5 +8,8 @@ namespace LibrarySystem
     public interface INotifiable
     {
         void Notify(string message);
+        void SendNotification(UserRole role);
+
+        
     }
 }
