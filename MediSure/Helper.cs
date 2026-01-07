@@ -79,7 +79,7 @@ namespace MediSure
         #endregion
 
         /// <summary>
-        /// Member function to Print the Bil
+        /// Member function to Print the Bill
         /// </summary>
         /// <param name="pb"></param>
         #region View Last Bill
