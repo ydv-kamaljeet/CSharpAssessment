@@ -1,7 +1,7 @@
 
 using DigitalPettyCashSystem.Models;
 using DigitalPettyCashSystem.Helpers;
-using DigitalPettyCashSystem.DataBank;
+using DigitalPettyCashSystem.Testing;
 using System.Globalization;
 using System.Runtime.CompilerServices;
 namespace DigitalPettyCashSystem.Ledger;
@@ -36,10 +36,12 @@ public class Ledger<T> where T : Transaction
         return result;  //returing the filtered out transactions
     }
 
+    //Method chaining : Here when this function is called ,then it will call another static method of helper class
     public float CalculateTotal(){
         return Helper.CalculateTotalAmount<T>(_transactions);  //calling from static class {i.e. separate calculation class}
     }
 
+    //will return all the transactions
     public List<T> GetAll()
     {
         return _transactions;
