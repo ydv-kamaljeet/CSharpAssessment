@@ -28,7 +28,7 @@ public class PayrollEngine
             //Adding payslip in list
             _paySlips.Add(slip);
             //Executing the delegate methods
-            SalaryProcessed?.Invoke(slip); // multicast delegate
+            SalaryProcessed?.Invoke(slip); // multicast delegate {will execute the methods one by one in sequence}
         }
     }
 

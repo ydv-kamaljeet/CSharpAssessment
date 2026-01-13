@@ -13,7 +13,7 @@ public class Program
     {
         //creating list of Employees : Act as DataBank {HardCoded}
         EmployeeRepository emprepo = new EmployeeRepository();
-        
+
         //want to test on these employees as well including the pre-existing data
         List<Employee> employees = new()
         {
@@ -36,12 +36,8 @@ public class Program
         decimal totalPayout = 0;
         foreach (var slip in engine.GetPaySlips())
         {
-            Console.WriteLine(
-                $"{slip.Id} | {slip.Name} | {slip.Type} | " +
-                $"Gross: {slip.Gross} | Deduction: {slip.Deduction} | Net: {slip.Net}"
-            );
-
-            totalPayout += slip.Net;
+            Console.WriteLine( $"{slip.Id} | {slip.Name} | {slip.Type} | " + $"Gross: {slip.Gross} | Deduction: {slip.Deduction} | Net: {slip.Net}");
+            totalPayout += slip.Net;    //Adding the totalPayout 
         }
 
         Console.WriteLine($"\nTotal Employees: {engine.GetPaySlips().Count}");
