@@ -38,7 +38,7 @@ public class FlipKey
 }
 public class Program
 {
-    public static void Main()
+    public static void Main() 
     {
         FlipKey c = new FlipKey();
         string input = Console.ReadLine() ?? string.Empty;

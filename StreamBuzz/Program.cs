@@ -1,12 +1,12 @@
 ﻿public class CreatorStats
 {
-    public string? CreatorName{get; set;}
-    public double [] WeeklyLikes{get; set;}
+    public string? CreatorName { get; set; }
+    public double[] WeeklyLikes { get; set; }
     public CreatorStats()
     {
-        
+
     }
-    public CreatorStats(string? creatorName, double [] weeklyLikes)
+    public CreatorStats(string? creatorName, double[] weeklyLikes)
     {
         CreatorName = creatorName;
         WeeklyLikes = weeklyLikes;
@@ -18,51 +18,51 @@
         Console.WriteLine("User Registered SuccessFully");
     }
     public Dictionary<string, int> GetTopPostCounts(List<CreatorStats> records, double likeThreshold)
-{
-    Dictionary<string, int> result = new Dictionary<string, int>();
-
-    foreach (var creator in records)
     {
-        int count = 0;
+        Dictionary<string, int> result = new Dictionary<string, int>();
 
-        foreach (var val in creator.WeeklyLikes)
+        foreach (var creator in records)
         {
-            if (val >= likeThreshold)
+            int count = 0;
+
+            foreach (var val in creator.WeeklyLikes)
             {
-                count++;
+                if (val >= likeThreshold)
+                {
+                    count++;
+                }
+            }
+
+            if (count > 0)
+            {
+                result.Add(creator.CreatorName!, count);
             }
         }
 
-        if (count > 0)
-        {
-            result.Add(creator.CreatorName!, count);
-        }
+        return result;
     }
-
-    return result;
-}
 
     public double CalculateAverageLikes()
     {
         int count = 0;
         double total = 0;
 
-        foreach(var creator in EngagementBoard)
+        foreach (var creator in EngagementBoard)
         {
-            foreach(var val in creator.WeeklyLikes)
+            foreach (var val in creator.WeeklyLikes)
             {
-                count ++;
+                count++;
                 total += val;
             }
         }
-        return total/count;
+        return total / count;
     }
 }
 public class Program
 {
     public static void Main()
     {
-        
+
         CreatorStats service = new CreatorStats();
         bool running = true;
 
