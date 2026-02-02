@@ -9,6 +9,7 @@ public class OrderStatusLog
     public OrderStatus NewStatus { get; }
     public DateTime ChangedOn { get; }
 
+    //Constructor to change the order status automatically while creating ovject.
     public OrderStatusLog(OrderStatus oldStatus, OrderStatus newStatus)
     {
         OldStatus = oldStatus;

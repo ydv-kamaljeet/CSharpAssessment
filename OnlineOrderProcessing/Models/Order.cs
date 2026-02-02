@@ -8,7 +8,7 @@ public class Order
 {
     public int Id { get; }
     public Customer Customer { get; }
-
+    //Private lists to ensure security.
     private List<OrderItem> _items = new();
     private List<OrderStatusLog> _statusHistory = new();
 
@@ -23,12 +23,12 @@ public class Order
         Customer = customer;
         CurrentStatus = OrderStatus.Created;
     }
-
+    //Adding to prexisting data
     public void AddItem(Product product, int quantity)
     {
         _items.Add(new OrderItem(product, quantity));
     }
-
+    //Total Payable Bill
     public decimal CalculateTotal()
         => _items.Sum(i => i.TotalPrice);
 
@@ -37,7 +37,7 @@ public class Order
     /// </summary>
     public void ChangeStatus(OrderStatus newStatus)
     {
-        // Business rules
+        // Order Status Change rules
         if (CurrentStatus == OrderStatus.Cancelled)
             throw new InvalidOperationException("Cancelled order cannot change status.");
 
